@@ -17,7 +17,7 @@
         </a></li>
         <li class="submenu border rounded-pill border-success"><a href="javascript:;"><i class="fa fa-user"></i>Saya</a>
             <ul>
-                {{-- <li><a href="#">pengaturan akun</a></li> --}}
+                <li><a href="{{ route('profile.index') }}">Profile</a></li>
                 <li><a href="{{ route('pesanan.cek') }}">cek pesanan</a></li>
             </ul>
         </li>

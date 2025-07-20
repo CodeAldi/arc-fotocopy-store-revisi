@@ -11,6 +11,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ManajemenPesananController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatPesananController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,9 @@ Route::controller(OrderController::class)->middleware(['auth'])->group(function(
 
 Route::controller(RiwayatPesananController::class)->middleware(['auth'])->group(function(){
     Route::get('cek-pesanan','index')->name('pesanan.cek');
+});
+Route::controller(ProfileController::class)->group(function(){
+    Route::get('/user/profile','index')->name('profile.index');
 });
 
 
