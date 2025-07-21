@@ -52,12 +52,12 @@
             @csrf
             <div class="mb-3">
                 <label for="current_password" class="form-label">Password Saat Ini</label>
-                <input type="password" class="form-control" id="current_password" name="current_password">
+                <input type="password" class="form-control" id="current_password" name="current_password" autocomplete="current-password">
             </div>
             <div class="mb-3">
                 <label for="new_password" class="form-label">Password Baru</label>
                 <input type="password" class="form-control" id="new_password" name="new_password"
-                    oninput="checkPasswordStrength()">
+                    oninput="checkPasswordStrength()" autocomplete="new-password">
                 <small id="password-strength-text" class="form-text text-muted"></small>
                 <div class="progress mt-2" style="height: 5px;">
                     <div id="password-strength-bar" class="progress-bar" role="progressbar" style="width: 0%;"></div>
@@ -65,7 +65,7 @@
             </div>
             <div class="mb-3">
                 <label for="confirm_password" class="form-label">Konfirmasi Password Baru</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" autocomplete="new-password">
             </div>
             <button type="submit" class="btn btn-warning">Ubah Password</button>
         </form>
