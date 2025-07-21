@@ -45,7 +45,8 @@ class authenticateController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        if (Auth::attempt($credentials)) {
+        $remember = $request->has('remember');
+        if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
             if (auth()->user()->hasRole('pembeli')) {
                 return redirect()->route('landing.home');
