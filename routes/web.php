@@ -13,6 +13,7 @@ use App\Http\Controllers\ManajemenPesananController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatPesananController;
+use App\Http\Controllers\VerifikasiEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,11 +53,17 @@ Route::controller(OrderController::class)->middleware(['auth'])->group(function(
 Route::controller(RiwayatPesananController::class)->middleware(['auth'])->group(function(){
     Route::get('cek-pesanan','index')->name('pesanan.cek');
 });
-Route::controller(ProfileController::class)->group(function(){
+Route::controller(ProfileController::class)->middleware(['auth'])->group(function(){
     Route::get('/user/profile','index')->name('profile.index');
 });
 
-
+Route::post('/user/profile/email-verification/send',[VerifikasiEmailController::class, 'sendEmailVerification'])
+->middleware(['auth'])
+->name('profile.verificationMail.send');
+Route::get('/user/profile/email-verification/verify/{id}/{hash}',[VerifikasiEmailController::class, 'verify'])
+->middleware(['auth','signed'])
+->name('verification.verify');
+// ! -- admin dashboard start -- !
 Route::get('/beranda', function () {
     return view('beranda',['title'=>'Beranda']);
 })->middleware('auth')->name('beranda');

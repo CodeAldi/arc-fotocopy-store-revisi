@@ -11,10 +11,12 @@
         <div class="alert alert-success">Email Anda sudah terverifikasi.</div>
         @else
         <div class="alert alert-warning">
-            Email Anda belum terverifikasi.
-            <form action="#" method="POST" class="d-inline">
+            <form action="{{ route('profile.verificationMail.send') }}" method="POST" class="d-inline">
+                <p>
+                    Email Anda belum terverifikasi.
+                </p>
                 @csrf
-                <button type="submit" class="btn btn-sm btn-primary">Kirim Ulang Email Verifikasi</button>
+                <button type="submit" class="btn btn-sm btn-primary">Kirim Email Verifikasi</button>
             </form>
         </div>
         @endif
