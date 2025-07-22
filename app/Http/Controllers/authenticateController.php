@@ -7,6 +7,7 @@ use App\Enums\UserRole;
 use Illuminate\Http\Request;
 use App\Http\Middleware\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class authenticateController extends Controller
 {
@@ -68,6 +69,24 @@ class authenticateController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+    function gantiPassword(Request $request) {
+        $request->validate([
+            'current_password' => ['required'],
+            'new_password' => ['required', 'min:8', 'confirmed'], // 'confirmed' cocok dengan field 'new_password_confirmation'
+        ]);
+        $user = Auth::user();
+
+        // Cek apakah password saat ini benar
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Password saat ini salah.']);
+        }
+
+        // Update password
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with('passwordSuccess', 'Password berhasil diperbarui.');
     }
     
 }

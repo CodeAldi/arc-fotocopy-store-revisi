@@ -63,19 +63,21 @@ Route::post('/user/profile/email-verification/send',[VerifikasiEmailController::
 Route::get('/user/profile/email-verification/verify/{id}/{hash}',[VerifikasiEmailController::class, 'verify'])
 ->middleware(['auth','signed'])
 ->name('verification.verify');
+
+Route::controller(authenticateController::class)->group(function () {
+    Route::get('/login', 'renderLogin')->middleware('guest')->name('login');
+    Route::get('/register', 'renderRegister')->middleware('guest')->name('register');
+    Route::get('/forgot-password', 'renderForgotPassword')->middleware('guest')->name('forgot');
+    Route::post('/register', 'registerAksi')->middleware('guest')->name('register.aksi');
+    Route::post('/login', 'loginAksi')->middleware('guest')->name('login.aksi');
+    Route::post('/logout', 'logoutAksi')->middleware('auth')->name('logout.aksi');
+    Route::post('/profile/password', 'gantiPassword')->middleware('auth')->name('profile.changePassword');
+});
+
 // ! -- admin dashboard start -- !
 Route::get('/beranda', function () {
     return view('beranda',['title'=>'Beranda']);
 })->middleware('auth')->name('beranda');
-
-Route::controller(authenticateController::class)->group(function() {
-    Route::get('/login','renderLogin')->middleware('guest')->name('login');
-    Route::get('/register','renderRegister')->middleware('guest')->name('register');
-    Route::get('/forgot-password','renderForgotPassword')->middleware('guest')->name('forgot');
-    Route::post('/register','registerAksi')->middleware('guest')->name('register.aksi');
-    Route::post('/login','loginAksi')->middleware('guest')->name('login.aksi');
-    Route::post('/logout','logoutAksi')->middleware('auth')->name('logout.aksi');
-});
 
 Route::controller(ManajemenPesananController::class)->middleware(['auth','role:admin'])->group(function(){
     Route::get('manajamen-pesanan/barang/index', 'renderManajemenBarang')->name('manajemenPesanan.barang.index');

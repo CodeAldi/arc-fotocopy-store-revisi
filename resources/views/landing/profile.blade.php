@@ -48,7 +48,7 @@
     {{-- SECTION 3: Ganti Password --}}
     <div class="mb-5">
         <h4>Ganti Password</h4>
-        <form action="#" method="POST">
+        <form action="{{ route('profile.changePassword') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="current_password" class="form-label">Password Saat Ini</label>
@@ -64,8 +64,8 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="confirm_password" class="form-label">Konfirmasi Password Baru</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password" autocomplete="new-password">
+                <label for="new_password_confirmation" class="form-label">Konfirmasi Password Baru</label>
+                <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" autocomplete="new-password">
             </div>
             <button type="submit" class="btn btn-warning">Ubah Password</button>
         </form>
@@ -102,12 +102,12 @@
         let width = "25%";
         let text = "Lemah";
 
-        if (strength >= 3) {
+        if (strength >= 2) {
             barClass = "bg-warning";
             width = "50%";
             text = "Sedang";
         }
-        if (strength === 4) {
+        if (strength >= 3) {
             barClass = "bg-success";
             width = "100%";
             text = "Kuat";
@@ -118,5 +118,18 @@
         strengthText.innerText = "Kekuatan password: " + text;
     }
 </script>
+
 @endpush
+@if (session('passwordSuccess'))
+<script>
+    console.log();
+    
+    Swal.fire({
+        title: 'Success!',
+        text: 'Password Berhasil diganti',
+        icon: 'success',
+        confirmButtonText: 'oke'
+        })
+</script>
+@endif
 @endsection
