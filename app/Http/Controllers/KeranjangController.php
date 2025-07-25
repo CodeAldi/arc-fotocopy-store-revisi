@@ -27,4 +27,8 @@ class KeranjangController extends Controller
         $keranjang->save();
         return back()->with('barangSuccess','success');
     }
+    function destroy(Keranjang $keranjang) {
+        $keranjang->delete();
+        return back()->with('message','delete');
+    }
 }

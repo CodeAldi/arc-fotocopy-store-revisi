@@ -28,7 +28,11 @@
                         <div class="col">{{ $item->jumlah }}</div>
                         <div class="col">Rp.{{ $item->barang->hargaBarang * $item->jumlah }}</div>
                         <div class="col">
-                            <button class="btn btn-danger">Hapus</button>
+                            <form action="{{ route('keranjang.hapus.item',['keranjang'=>$item]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Hapus</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -57,4 +61,17 @@
         </div>
     </div>
 </div>
+@if (session('message'))
+    @push('script')
+        <script>
+            Swal.fire({
+            title: 'Success!',
+            text: 'Item keranjang berhasil dihapus',
+            icon: 'success',
+            confirmButtonText: 'oke',
+            allowOutsideClick: false,
+            })
+        </script>
+    @endpush
+@endif
 @endsection

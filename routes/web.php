@@ -42,6 +42,7 @@ Route::controller(HalamanJasaController::class)->group(function(){
 Route::controller(KeranjangController::class)->middleware(['auth'])->group(function(){
     Route::get('/lihat-keranjang','index')->name('keranjang.lihat');
     Route::post('/masukan-keranjang','store')->name('keranjang.masukan');
+    Route::delete('/hapus-item-keranjang/{keranjang}','destroy')->name('keranjang.hapus.item');
 });
 
 Route::controller(OrderController::class)->middleware(['auth'])->group(function(){
