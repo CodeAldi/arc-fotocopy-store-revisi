@@ -31,4 +31,13 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetails::class);
     }
+    /**
+     * Get all of the orderJasaDetails for the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orderJasaDetails(): HasMany
+    {
+        return $this->hasMany(OrderJasaDetails::class);
+    }
 }
