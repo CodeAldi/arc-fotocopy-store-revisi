@@ -12,7 +12,7 @@
                                 <span>print dan cetak foto mudah, kapan saja, dimana pun anda berada tanpa harus datang
                                     ke toko terlebih dahulu</span>
                                 <div class="main-border-button">
-                                    <a href="#">Purchase Now!</a>
+                                    <a href="{{ route('halaman.jasa') }}">Pesan Sekarang!</a>
                                 </div>
                             </div>
                             <img src="landing-assets/images/left-banner-image.jpg" alt="">
@@ -36,7 +36,7 @@
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="{{ route('halaman.barang') }}">Discover More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="{{ route('halaman.barang') }}">Discover More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="{{ route('halaman.barang') }}">Discover More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="{{ route('halaman.barang') }}">Discover More</a>
                                                 </div>
                                             </div>
                                         </div>
