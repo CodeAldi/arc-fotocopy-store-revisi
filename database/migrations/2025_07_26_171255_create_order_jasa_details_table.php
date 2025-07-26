@@ -17,7 +17,12 @@ return new class extends Migration
             $table->foreignId('jasa_id')->constrained('jasa')->onUpdate('cascade')->onDelete('cascade');
             $table->string('file');
             $table->string('catatan')->nullable();
-            $table->integer('jumlah');
+            $table->integer('jumlah_halaman');
+            $table->integer('jumlah_rangkap');
+            $table->boolean('jilid_plastik')->default(false);
+            $table->boolean('jepit_besi')->default(false);
+            $table->boolean('hekter')->default(false);
+            $table->boolean('none')->default(true);
             $table->timestamps();
         });
     }
