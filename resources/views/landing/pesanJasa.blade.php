@@ -28,7 +28,7 @@
                     <form action="{{ route('keranjang.masukan') }}" method="post">
                         @csrf
                         <h4>{{ $jasa->namaJasa }}</h4>
-                        <span class="price" id="hargaSatuan">Rp.{{ $jasa->harga }},-</span>
+                        <span class="price" id="hargaSatuan">Rp.{{ $jasa->harga }},- /lembar</span>
                         <span>{{ $jasa->deskripsi }}</span>
                         <div class="quantity-content">
                             <div class="left-content">
@@ -38,21 +38,18 @@
                                 <div class="quantity buttons_added">
                                     <input type="button" value="-" class="minus">
                                     <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty"
-                                        class="input-text qty text" size="4" pattern="" inputmode="" id="jumlahBeli"
-                                        onchange="hitungHarga({{ $jasa }})">
+                                        class="input-text qty text" size="4" pattern="" inputmode="" id="jumlahBeli">
                                     <input type="button" value="+" class="plus">
                                 </div>
                             </div>
                         </div>
                         <div class="upload-file">
-                            <h4 class="mb-1 text-secondary">Upload file yang akan dicetak</h4>
+                            <h4 class="mb-1 text-secondary">Pilih file yang akan dicetak</h4>
                             <div class="input-group">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                                  <label class="custom-file-label" for="inputGroupFile04">pilih file</label>
-                                </div>
-                                <div class="input-group-append">
-                                  <button class="btn btn-outline-success" type="button" id="inputGroupFileAddon04">upload</button>
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Pilih file</label>
+                                    
                                 </div>
                               </div>
                         </div>
@@ -61,12 +58,11 @@
                             <h4 class="mb-1">catatan untuk toko :</h4>
                             <input type="text" name="catatan" placeholder="catatan untuk pihak toko"
                                 class="form-control mb-2">
-                            <h4 id="hargaTotal">total bayar : Rp. {{ $jasa->harga }}</h4>
-                        </div>
-                        <div class="main-border-button">
-                        </div>
-                        <div class="tombol">
-                            <button class="btn btn-success mt-2">Pesan dan Bayar !</button>
+                            </div>
+                            <div class="main-border-button">
+                            </div>
+                            <div class="tombol">
+                                <button class="btn btn-success mt-2">Upload dan lihat total bayar</button>
                             <button class="btn btn-danger mt-2">Batal dan Kembali !</button>
                         </div>
                 </div>
@@ -86,15 +82,5 @@
         })
 </script>
 @endif
-<script>
-    function hitungHarga(item) {
-            const myjson = item;
-            let hargasatuannya = myjson.harga;
-            let jumlahBeli = document.getElementById("jumlahBeli").value;
-            let total = parseInt(jumlahBeli) * hargasatuannya;
-            document.getElementById("hargaTotal").textContent = "total bayar : Rp. " + total;
-            // console.log(hargasatuannya,jumlahBeli,);
-            
-        }
-</script>
+
 @endsection
