@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class OrderJasaDetailsController extends Controller
 {
-    //
+    function hitungHarga(Request $request) {
+        
+    }
 }
