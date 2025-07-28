@@ -11,6 +11,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ManajemenPesananController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderJasaDetailsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatPesananController;
 use App\Http\Controllers\VerifikasiEmailController;
@@ -49,6 +50,9 @@ Route::controller(OrderController::class)->middleware(['auth'])->group(function(
     Route::get('/checkout/bayar','index')->name('checkout.bayar');
     Route::post('/checkout','store')->name('checkout.store');
     Route::post('/checkout-berhasil','berhasil')->name('checkout.berhasil');
+});
+Route::controller(OrderJasaDetailsController::class)->middleware(['auth'])->group(function(){
+    Route::post('/halaman-jasa/hitung-harga','hitungHarga')->name('halaman.jasa.hitungHarga');
 });
 
 Route::controller(RiwayatPesananController::class)->middleware(['auth'])->group(function(){

@@ -25,7 +25,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="right-content">
-                    <form action="{{ route('keranjang.masukan') }}" method="post">
+                    <form action="{{ route('halaman.jasa.hitungHarga') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <h4>{{ $jasa->namaJasa }}</h4>
                         <span class="price" id="hargaSatuan">Rp.{{ $jasa->harga }},- /lembar</span>
@@ -47,7 +47,7 @@
                             <h4 class="mb-1 text-secondary">Pilih file yang akan dicetak</h4>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <input type="file" class="custom-file-input" id="customFile" name="file">
                                     <label class="custom-file-label" for="customFile">Pilih file</label>
                                     
                                 </div>
