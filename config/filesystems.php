@@ -73,7 +73,7 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('gambarBarang') => storage_path('app/gambarBarang'),
         public_path('gambarJasa') => storage_path('app/gambarJasa'),
-        public_path('temp') => storage_path('app/temp'),
+        public_path('order_jasa') => storage_path('app/order_jasa'),
     ],
 
 ];
