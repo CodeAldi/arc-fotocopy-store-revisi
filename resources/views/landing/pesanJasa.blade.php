@@ -101,11 +101,11 @@
     </div>
 </section>
 <!-- ***** Product Area Ends ***** -->
-@if (session('barangSuccess'))
+@if (session('pesanJasaSuccess'))
 <script>
     Swal.fire({
         title: 'Success!',
-        text: 'Jasa berhasil dipesan, silahkan cek berkala diriwayat pesanan ;)',
+        text: 'Jasa berhasil dipesan, silahkan cek Keranjang untuk checkout ;)',
         icon: 'success',
         confirmButtonText: 'oke'
         })

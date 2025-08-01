@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\OrderJasaDetails;
 use Illuminate\Http\Request;
+use App\Models\OrderJasaDetails;
+use Illuminate\Support\Facades\Storage;
 
 class OrderJasaController extends Controller
 {
@@ -54,7 +55,7 @@ class OrderJasaController extends Controller
                 $totalBayar += 2500;
                 break;
             
-            case 'jilid':
+            case 'jilid_plastik':
                 $orderJasaDetails->jilid_plastik = 1;
                 $totalBayar += 3000;
                 break;
@@ -71,15 +72,21 @@ class OrderJasaController extends Controller
         $orderJasaDetails->order_id = $order->id;
         $orderJasaDetails->jasa_id = $jasa_id;
         $orderJasaDetails->file = $filePath;
-        if (isset($request->catatan)) {
-            $orderJasaDetails->catatan = $request->catatan;
+        if (isset($catatan)) {
+            $orderJasaDetails->catatan = $catatan;
         }
         $orderJasaDetails->jumlah_halaman = $jumlahHalaman;
         $orderJasaDetails->jumlah_rangkap = $jumlahRangkap;
         $orderJasaDetails->save();
-        dd($request->jenisFinishing, $orderJasaDetails);
 
-        return redirect()->route('landing.home');
+        return back()->with('pesanJasaSuccess','success');
 
+    }
+    function destroyOrderJasa($id){
+        $order = Order::find($id);
+        Storage::delete($order->orderJasaDetails[0]->file);
+        $order->delete();
+        return back()->with('message','delete');
+        
     }
 }

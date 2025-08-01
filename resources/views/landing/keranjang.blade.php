@@ -24,7 +24,7 @@
                         <div class="col">{{ $loop->iteration }}</div>
                         <div class="col">{{ $item->barang->namaBarang }}</div>
                         <div class="col">{{ $item->jumlah }}</div>
-                        <div class="col">Rp.{{ $item->barang->hargaBarang * $item->jumlah }}</div>
+                        <div class="col">{{ $item->barang->hargaBarang * $item->jumlah }}</div>
                         <div class="col">
                             <form action="{{ route('keranjang.hapus.item',['keranjang'=>$item]) }}" method="post">
                                 @csrf
@@ -46,7 +46,7 @@
                         <div class="col">Total Bayar:</div>
                         <div class="col"></div>
                         <div class="col"></div>
-                        <div class="col">Rp.{{ $totalbayar }},-</div>
+                        <div class="col" id="totalBayarBarang">{{ $totalbayar }}</div>
                         <div class="col">
                             <form action="{{ route('checkout.store') }}" method="post">
                                 @csrf
@@ -71,7 +71,7 @@
                         <div class="col">jumlah Halaman</div>
                         <div class="col">jumlah Rangkap</div>
                         <div class="col">finishing</div>
-                        <div class="col">total</div>
+                        <div class="col">total (RP)</div>
                         <div class="col">aksi</div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col">{{ $loop->iteration }}</div>
                             <div class="col">{{ $item->orderJasaDetails[0]->jasa->namaJasa }}</div>
-                            <div class="col">Rp{{ $item->orderJasaDetails[0]->jasa->harga }}</div>
+                            <div class="col">{{ $item->orderJasaDetails[0]->total }}</div>
                             <div class="col">{{ $item->orderJasaDetails[0]->jumlah_halaman }}</div>
                             <div class="col">{{ $item->orderJasaDetails[0]->jumlah_rangkap }}</div>
                             <div class="col">
@@ -100,10 +100,9 @@
                                 @endif
 
                             </div>
-                            <div class="col">Rp.{{ ($item->orderJasaDetails[0]->jasa->harga * $item->orderJasaDetails[0]->jumlah_halaman) *
-                            $item->orderJasaDetails[0]->jumlah_rangkap }}</div>
+                            <div class="col">{{ $item->total_bayar }}</div>
                             <div class="col">
-                                <form action="{{ route('keranjang.hapus.item',['keranjang'=>$item]) }}" method="post">
+                                <form action="{{ route('halaman.jasa.hapusPesananJasa',['id'=>$item->id]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Hapus</button>
@@ -124,7 +123,7 @@
                         <div class="col">Total Bayar:</div>
                         <div class="col"></div>
                         <div class="col"></div>
-                        <div class="col">Rp.{{ $totalbayarJasa }},-</div>
+                        <div class="col" id="totalBayarJasa">{{ $totalbayarJasa }}</div>
                         <div class="col">
                             <form action="{{ route('checkout.store') }}" method="post">
                                 @csrf
@@ -138,7 +137,6 @@
     </div>
 </div>
 @if (session('message'))
-    @push('script')
         <script>
             Swal.fire({
             title: 'Success!',
@@ -148,6 +146,21 @@
             allowOutsideClick: false,
             })
         </script>
-    @endpush
 @endif
+<script>
+    let totalBayarJasa = document.getElementById('totalBayarJasa');
+    let number = totalBayarJasa.innerHTML;
+    let formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+    });
+    totalBayarJasa.innerHTML = formatter.format(number);
+    let totalBayarBarang = document.getElementById('totalBayarBarang');
+    let number2 = totalBayarBarang.innerHTML;
+    totalBayarBarang.innerHTML = formatter.format(number2);
+    console.log(formatter.format(number));
+    // console.log(totalBayarJasa.innerHTML);
+     
+</script>
 @endsection
