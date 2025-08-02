@@ -13,7 +13,7 @@
         {{-- <li class="scroll-to-section"><a href="#about">tentang kami</a></li> --}}
         @if (auth()->check())
         <li class="scroll-to-section"><a href="{{ route('keranjang.lihat') }}"><i class="fa fa-shopping-cart"></i>
-            <span class="badge badge-pill badge-danger">{{ count($keranjang) }}</span>
+            {{-- <span class="badge badge-pill badge-danger">{{ count($keranjang) }}</span> --}}
         </a></li>
         <li class="submenu border rounded-pill border-success"><a href="javascript:;"><i class="fa fa-user"></i>Saya</a>
             <ul>
