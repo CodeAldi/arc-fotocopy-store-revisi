@@ -24,7 +24,7 @@
                         <div class="col">{{ $loop->iteration }}</div>
                         <div class="col">{{ $item->barang->namaBarang }}</div>
                         <div class="col">{{ $item->jumlah }}</div>
-                        <div class="col">{{ $item->barang->hargaBarang * $item->jumlah }}</div>
+                        <div class="col">Rp{{ number_format($item->barang->hargaBarang * $item->jumlah,0,'','.') }}</div>
                         <div class="col">
                             <form action="{{ route('keranjang.hapus.item',['keranjang'=>$item]) }}" method="post">
                                 @csrf
@@ -100,9 +100,13 @@
                                 @endif
 
                             </div>
-                            <div class="col">{{ $item->total_bayar }}</div>
+                            <div class="col">Rp{{ number_format($item->total_bayar,0,'','.') }}</div>
                             <div class="col">
-                                <form action="{{ route('halaman.jasa.hapusPesananJasa',['id'=>$item->id]) }}" method="post">
+                                <form action="{{ route('checkout.store') }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-success">Bayar</button>
+                                </form>
+                                <form action="{{ route('halaman.jasa.hapusPesananJasa',['id'=>$item->id]) }}" class="mt-2" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Hapus</button>
@@ -116,7 +120,7 @@
             
         @endforelse
         {{-- total bayar untuk order jasa --}}
-        <div class="col-12">
+        {{-- <div class="col-12">
             <div class="card my-2 ">
                 <div class="card-body">
                     <div class="row">
@@ -134,7 +138,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @if (session('message'))
         <script>
@@ -148,14 +152,14 @@
         </script>
 @endif
 <script>
-    let totalBayarJasa = document.getElementById('totalBayarJasa');
-    let number = totalBayarJasa.innerHTML;
+    // let totalBayarJasa = document.getElementById('totalBayarJasa');
+    // let number = totalBayarJasa.innerHTML;
     let formatter = new Intl.NumberFormat('id-ID', {
     style: 'currency',
     currency: 'IDR',
     minimumFractionDigits: 0
     });
-    totalBayarJasa.innerHTML = formatter.format(number);
+    // totalBayarJasa.innerHTML = formatter.format(number);
     let totalBayarBarang = document.getElementById('totalBayarBarang');
     let number2 = totalBayarBarang.innerHTML;
     totalBayarBarang.innerHTML = formatter.format(number2);
