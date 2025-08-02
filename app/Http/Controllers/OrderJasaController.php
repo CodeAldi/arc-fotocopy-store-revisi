@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Midtrans\Snap;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\OrderJasaDetails;
@@ -88,5 +89,40 @@ class OrderJasaController extends Controller
         $order->delete();
         return back()->with('message','delete');
         
+    }
+    function checkoutJasa(Request $request) {
+        $order = Order::find($request->id);
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $order->id,
+                'gross_amount' => $order->total_bayar,
+            ),
+            'customer_details' => array(
+                'first_name' => Auth()->user()->name,
+                'last_name' => '',
+                'email' => Auth()->user()->email,
+                'phone' => '08111222333',
+            ),
+        );
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $snapToken = Snap::getSnapToken($params);
+        $order->snap_token = $snapToken;
+        $order->save();
+
+        $orderJasaDetails = $order->orderJasaDetails[0];
+        // dd($order);
+        return view('landing.bayarJasa', [
+            'order' => $order,
+            'orderDetails' => $orderJasaDetails,
+        ]);
     }
 }

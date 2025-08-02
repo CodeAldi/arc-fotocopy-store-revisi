@@ -37,7 +37,13 @@
             </div>
         </div>
         @empty
-            
+        <div class="col">
+            <div class="card">
+                <div class="card-body mx-auto">
+                    <p class="card-text text-secondary">Kosong</p>
+                </div>
+            </div>
+        </div>
         @endforelse
         <div class="col-12">
             <div class="card my-2 ">
@@ -85,7 +91,7 @@
                         <div class="row">
                             <div class="col">{{ $loop->iteration }}</div>
                             <div class="col">{{ $item->orderJasaDetails[0]->jasa->namaJasa }}</div>
-                            <div class="col">{{ $item->orderJasaDetails[0]->total }}</div>
+                            <div class="col">Rp.{{ number_format($item->orderJasaDetails[0]->jasa->harga,0,'','.') }}</div>
                             <div class="col">{{ $item->orderJasaDetails[0]->jumlah_halaman }}</div>
                             <div class="col">{{ $item->orderJasaDetails[0]->jumlah_rangkap }}</div>
                             <div class="col">
@@ -102,8 +108,9 @@
                             </div>
                             <div class="col">Rp{{ number_format($item->total_bayar,0,'','.') }}</div>
                             <div class="col">
-                                <form action="{{ route('checkout.store') }}" method="post">
+                                <form action="{{ route('checkout.jasa.bayar') }}" method="post">
                                     @csrf
+                                    <input type="hidden" name="id" value="{{ $item->id }}">
                                     <button class="btn btn-success">Bayar</button>
                                 </form>
                                 <form action="{{ route('halaman.jasa.hapusPesananJasa',['id'=>$item->id]) }}" class="mt-2" method="post">
@@ -117,7 +124,13 @@
                 </div>
             </div>
         @empty
-            
+        <div class="col">
+            <div class="card">
+                <div class="card-body mx-auto">
+                    <p class="card-text text-secondary">Kosong</p>
+                </div>
+            </div>
+        </div>    
         @endforelse
         {{-- total bayar untuk order jasa --}}
         {{-- <div class="col-12">

@@ -55,6 +55,7 @@ Route::controller(OrderController::class)->middleware(['auth'])->group(function(
 Route::controller(OrderJasaController::class)->middleware(['auth'])->group(function(){
     Route::post('halaman-jasa/pesan', 'orderJasaStore')->name('halaman.jasa.pesanJasa');
     Route::delete('halaman-jasa/{id}/hapus', 'destroyOrderJasa')->name('halaman.jasa.hapusPesananJasa');
+    Route::post('/checkout-jasa/bayar', 'checkoutJasa')->name('checkout.jasa.bayar');
 });
 Route::controller(OrderJasaDetailsController::class)->middleware(['auth'])->group(function(){
     Route::post('/halaman-jasa/hitung-harga','hitungHarga')->name('halaman.jasa.hitungHarga');
