@@ -53,10 +53,21 @@
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_order }}</td>
                             <td>
-                                <form action="{{ route('manajemenPesanan.selesaikan',['id'=>$item->id]) }}" method="post">
-                                    @csrf
-                                    <button class="btn btn-md rounded-pill btn-success" {{ $item->status_order == ('done') ? 'disabled' : '' ; }}>Selesaikan pesanan</button>
-                                </form>
+                                @if ($item->status_order == 'done')
+                                    <button class="btn btn-md rounded-pill btn-primary" disabled type="button">Pesanan selesai</button>
+                                @elseif ($item->status_order == 'waiting for payment')
+                                    <button class="btn btn-md rounded-pill btn-primary" disabled type="button">Menunggu Pembayaran</button>
+                                @elseif ($item->status_order == 'being prepared')
+                                    <form action="{{ route('manajemenPesanan.selesaikan',['id'=>$item->id]) }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-md rounded-pill btn-success">Pesanan dapat diambil</button>
+                                    </form>
+                                @elseif ($item->status_order == 'waiting to be picked up')
+                                    <form action="{{ route('manajemenPesanan.selesaikan',['id'=>$item->id]) }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-md rounded-pill btn-success">Selesaikan pesanan</button>
+                                    </form>
+                                @endif
                             </td>
                             {{-- <td>
                                 <div class="dropdown">

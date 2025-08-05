@@ -23,10 +23,14 @@
                     <div class="col">Rp.{{ $item->total_bayar }}</div>
                     <div class="col">{{ $item->status_pembayaran }}</div>
                     <div class="col">
-                        @if ($item->status_order == 'working')
-                        <span class="badge badge-primary">Sedang dipersiakan oleh toko</span>
-                        @else
-                        <span class="badge badge-success">selesai & silahkan ambil ditoko</span>
+                        @if ($item->status_order == 'done')
+                        <span class="badge badge-primary">Pesanan selesai</span>
+                        @elseif ($item->status_order == 'waiting for payment')
+                        <span class="badge badge-dark">Menunggu pembayaran</span>
+                        @elseif ($item->status_order == 'being prepared')
+                        <span class="badge badge-info">Sedang dipersiapkan toko</span>
+                        @elseif ($item->status_order == 'waiting to be picked up')
+                        <span class="badge badge-success">Pesanan dapat diambil</span>
                         @endif
                     </div>
                 </div>
