@@ -76,6 +76,7 @@ class OrderController extends Controller
         if ($hashed == $request->signature_key) {
             $order = Order::find($request->order_id);
             $order->status_pembayaran = 'paid';
+            $order->status_order = 'being prepared';
             $order->save();
         }
     }
