@@ -93,8 +93,9 @@ Route::get('/beranda', function () {
 Route::controller(ManajemenPesananController::class)->middleware(['auth','role:admin'])->group(function(){
     Route::get('manajamen-pesanan/barang/index', 'renderManajemenBarang')->name('manajemenPesanan.barang.index');
     Route::get('manajamen-pesanan/jasa/index', 'renderManajemenJasa')->name('manajemenPesanan.jasa.index');
+    Route::post('/{path}','DownloadDokumen')->name('manajemenPesanan.Jasa.file.download');
     
-    Route::post('manajemen-pesanan/barang/{id}/selesaikan', 'selesikanOrderBarang')->name('manajemenPesanan.barang.selesaikan');
+    Route::post('manajemen-pesanan/{id}/selesaikan', 'selesikanOrderBarang')->name('manajemenPesanan.selesaikan');
 });
 
 Route::middleware(['auth','role:admin'])->group(function(){

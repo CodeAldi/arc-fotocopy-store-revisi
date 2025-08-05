@@ -53,7 +53,7 @@
                             <td>{{ $item->status_pembayaran }}</td>
                             <td>{{ $item->status_order }}</td>
                             <td>
-                                <form action="{{ route('manajemenPesanan.barang.selesaikan',['id'=>$item->id]) }}" method="post">
+                                <form action="{{ route('manajemenPesanan.selesaikan',['id'=>$item->id]) }}" method="post">
                                     @csrf
                                     <button class="btn btn-md rounded-pill btn-success" {{ $item->status_order == ('done') ? 'disabled' : '' ; }}>Selesaikan pesanan</button>
                                 </form>
