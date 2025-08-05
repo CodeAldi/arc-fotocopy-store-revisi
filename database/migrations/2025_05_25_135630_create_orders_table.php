@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('total_bayar');
             $table->string('snap_token');
             $table->enum('status_pembayaran',['paid','unpaid'])->default('unpaid');
-            $table->enum('status_order',['working','done'])->default('working')->nullable();
+            $table->enum('status_order',['waiting for payment', 'waiting to be picked up', 'being prepared','done'])->default('waiting for payment')->nullable();
             $table->timestamps();
         });
     }
