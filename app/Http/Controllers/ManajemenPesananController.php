@@ -25,6 +25,12 @@ class ManajemenPesananController extends Controller
             'orderJasa'=>$orderJasa,
         ]);
     }
+    function pesananDapatDiambil($id) {
+        $order = Order::find($id);
+        $order->status_order = 'waiting to be picked up';
+        $order->save();
+        return back();
+    }
     function selesikanOrderBarang($id) {
         $order = Order::find($id);
         $order->status_order = 'done';

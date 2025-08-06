@@ -95,6 +95,7 @@ Route::controller(ManajemenPesananController::class)->middleware(['auth','role:a
     Route::get('manajamen-pesanan/jasa/index', 'renderManajemenJasa')->name('manajemenPesanan.jasa.index');
     Route::post('/{path}','DownloadDokumen')->name('manajemenPesanan.Jasa.file.download');
     
+    Route::post('manajemen-pesanan/{id}/menunggu-diambil', 'pesananDapatDiambil')->name('manajemenPesanan.menungguDiambil');
     Route::post('manajemen-pesanan/{id}/selesaikan', 'selesikanOrderBarang')->name('manajemenPesanan.selesaikan');
 });
 

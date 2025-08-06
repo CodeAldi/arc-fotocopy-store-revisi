@@ -57,23 +57,23 @@
                             <td>{{ $item->status_order }}</td>
                             <td>
                                 @if ($item->status_order == 'done')
-                                    <button class="btn btn-md rounded-pill btn-primary" disabled type="button">Pesanan selesai</button>
+                                <button class="btn btn-sm rounded-pill btn-primary" disabled type="button">Pesanan selesai</button>
                                 @elseif ($item->status_order == 'waiting for payment')
-                                <button class="btn btn-md rounded-pill btn-primary" disabled type="button">Menunggu Pembayaran</button>
+                                <button class="btn btn-sm rounded-pill btn-primary" disabled type="button">Menunggu Pembayaran</button>
                                 @elseif ($item->status_order == 'being prepared')
-                                <form action="{{ route('manajemenPesanan.selesaikan',['id'=>$item->id]) }}" method="post">
+                                <form action="{{ route('manajemenPesanan.menungguDiambil',['id'=>$item->id]) }}" method="post">
                                     @csrf
-                                    <button class="btn btn-md rounded-pill btn-success">Pesanan dapat diambil</button>
+                                    <button class="btn btn-sm rounded-pill bg-warning text-white">Pesanan dapat diambil</button>
                                 </form>
                                 @elseif ($item->status_order == 'waiting to be picked up')
                                 <form action="{{ route('manajemenPesanan.selesaikan',['id'=>$item->id]) }}" method="post">
                                     @csrf
-                                    <button class="btn btn-md rounded-pill btn-success">Selesaikan pesanan</button>
+                                    {{-- <button class="btn btn-sm rounded-pill btn-success">Hubungi pelanggan <i
+                                            class='bx bxl-whatsapp'></i></button> --}}
+                                    <button class="btn btn-sm rounded-pill btn-primary">Pesanan selesai</button>
                                 </form>
                                 @endif
-                               
                             </td>
-                        </tr> 
                         @empty
                         <tr>
                             <td>siti</td>
