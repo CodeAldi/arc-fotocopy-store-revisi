@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authenticateController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\HalamanBarangController;
 use App\Http\Controllers\HalamanJasaController;
 use App\Http\Controllers\JasaController;
@@ -86,9 +87,7 @@ Route::controller(authenticateController::class)->group(function () {
 });
 
 // ! -- admin dashboard start -- !
-Route::get('/beranda', function () {
-    return view('beranda',['title'=>'Beranda']);
-})->middleware('auth')->name('beranda');
+Route::get('/beranda', [BerandaController::class,'index'])->middleware('auth')->name('beranda');
 
 Route::controller(ManajemenPesananController::class)->middleware(['auth','role:admin'])->group(function(){
     Route::get('manajamen-pesanan/barang/index', 'renderManajemenBarang')->name('manajemenPesanan.barang.index');
