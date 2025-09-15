@@ -42,11 +42,14 @@ class authenticateController extends Controller
         return redirect()->route('login');
     }
     function loginAksi(Request $request) {
-        $credentials = $request->validate([
+        $validated = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ]);
+
         $remember = $request->has('remember');
+        $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
             if (auth()->user()->hasRole('pembeli')) {

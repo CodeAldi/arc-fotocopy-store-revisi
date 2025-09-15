@@ -75,36 +75,7 @@
                                 @endif
                             </td>
                         @empty
-                        <tr>
-                            <td>siti</td>
-                            <td>print warna A4 75gr</td>
-                            <td><button  class="btn btn-sm btn-primary"><i class='bx bxs-file-doc'></i> download dokumen </button></td>
-                            <td>30 lembar</td>
-                            <td>1</td>
-                            <td>jilid plastik</td>
-                            <td>Rp.9000</td>
-                            <td>paid</td>
-                            <td>working</td>
-                            <td>
-                                <button class="btn btn-md rounded-pill btn-success">Selesaikan pesanan</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>aldi</td>
-                            <td>print hitam-putih A4 75gr</td>
-                            <td>
-                                <button  class="btn btn-sm btn-primary"><i class='bx bxs-file-doc'></i> download dokumen </button>
-                            </td>
-                            <td>50 lembar</td>
-                            <td>2</td>
-                            <td>hekter</td>
-                            <td>Rp.25000</td>
-                            <td>paid</td>
-                            <td>done</td>
-                            <td>
-                                <button class="btn btn-md rounded-pill btn-success" disabled>Selesaikan pesanan</button>
-                            </td>
-                        </tr>
+                        
                         @endforelse
                     </tbody>
                 </table>
