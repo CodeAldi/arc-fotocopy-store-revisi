@@ -39,3 +39,54 @@ Selain itu, sistem pembayaran sudah terintegrasi dengan **Payment Gateway** (mod
 ```bash
 git clone https://github.com/username/arc-fotocopy-store-revisi.git
 cd arc-fotocopy-store
+```
+### 2. Install dependency
+```bash
+composer install
+```
+### 3. install aplikasi pendukung
+- xpdf-tools, dapat didownload di link : https://www.xpdfreader.com/download.html
+tools ini saya gunakan untuk membaca jumlah halaman pdf yang akan dicetak pembeli secara otomatis.
+### 4.konfigurasi file `.env`
+```bash
+cp .env.example .env
+```
+
+```env
+APP_NAME="ARC Fotokopi"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+# Payment Gateway midtrans(sandbox)
+PAYMENT_GATEWAY_KEY=
+PAYMENT_GATEWAY_SECRET=
+PAYMENT_GATEWAY_MODE=
+
+#captha google, pakai yg v2
+NOCAPTCHA_SITEKEY=
+NOCAPTCHA_SECRET=
+```
+
+### 5.generate application key
+```bash
+php artisan key:generate
+```
+
+### 6.migrasi & seeder database
+```bash
+php artisan migrate --seed
+```
+
+### 7.link storage
+```bash
+php artisan storage:link
+```
+
+### 8.jalankan server lokal
+```bash
+php artisan serve
+```
+
+Akses di: `http://localhost:8000`
