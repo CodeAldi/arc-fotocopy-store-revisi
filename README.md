@@ -29,7 +29,9 @@ Selain itu, sistem pembayaran sudah terintegrasi dengan **Payment Gateway** (mod
 - **Laravel 10** (Framework utama).
 - **MySQL** (Database).
 - **Bootstrap** (untuk tampilan UI).
-- **Payment Gateway** (sandbox).
+- **Payment Gateway midtrans** (sandbox).
+- **xpdf-tools** (pembaca jumlah halaman pdf).
+- **google captha** (pakai yang v2).
 
 ---
 
